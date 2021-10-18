@@ -7,13 +7,14 @@ import user from "./user";
 const routes = Router();
 
 function clientErrorHandler(err, req, res, next) {
-  // interface ErrExistingField {
-  //   error: string,
-  //   field: string
-  // }
+
   if (err instanceof QueryFailedError) {
     const [, code, message, dbField] = err.driverError.toString().split(': ')
 
+    // interface ErrExistingField {
+    //   error: string,
+    //   field: string
+    // }
     if (code === 'SQLITE_CONSTRAINT' && message === 'UNIQUE constraint failed') {
       const field = dbField.split('.').pop()
 
@@ -21,11 +22,15 @@ function clientErrorHandler(err, req, res, next) {
       return
     }
 
-    if (code === 'SQLITE_CONSTRAINT' && message === 'FOREIGN KEY constraint failed') {
-
-      res.json({ error: "asdsads" })
-      return
-    }
+    // Probably is not necessary more...
+    //
+    // // interface ErrForeingKey {
+    // //   error: string
+    // // }
+    // if (code === 'SQLITE_CONSTRAINT' && message === 'FOREIGN KEY constraint failed') {
+    //   res.json({ error: "delete your notes before delete your account" })
+    //   return
+    // }
   }
 
   // FIX THIS BEFORE PRODUCTION

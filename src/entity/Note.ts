@@ -34,7 +34,7 @@ export class Note {
   @Column({ type: 'date', default: () => "CURRENT_TIMESTAMP" })
   createDate: Date;
 
-  @ManyToOne(() => User, user => user.notes, { nullable: false })
+  @ManyToOne(() => User, user => user.notes, { nullable: false, onDelete: 'CASCADE' })
   user: User;
 
 }
