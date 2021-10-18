@@ -4,6 +4,8 @@ import routes from "./routes/index";
 
 import * as express from "express";
 
+require('dotenv').config()
+
 createConnection()
   .then(async connection => {
 

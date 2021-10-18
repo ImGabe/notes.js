@@ -5,7 +5,6 @@ import * as bcrypt from "bcryptjs";
 import * as jwt from "jsonwebtoken";
 
 import { User } from "../entity/User";
-
 export class AuthController {
   async authenticate(request: Request, response: Response, next: NextFunction) {
     const userRepository = getConnection().getRepository(User);
@@ -23,7 +22,7 @@ export class AuthController {
       return response.sendStatus(401);
     }
 
-    const token = jwt.sign({ id: user.id }, 'secret', { expiresIn: '1h' });
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     response.json({
       user,
