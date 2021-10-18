@@ -34,12 +34,6 @@ export class UserController {
     const userRepository = getConnection().getRepository(User);
     const { username, email, password } = request.body;
 
-    // const usernameExist = await userRepository
-    //   .findOne({ where: { username } })
-
-    // const emailExist = await userRepository
-    //   .findOne({ where: { email } })
-
     const user = userRepository.create({ username, email, password });
     const validations = await validate(user)
 
@@ -63,8 +57,6 @@ export class UserController {
     const { uuid } = request.params;
 
     const userToRemove = await userRepository.findOne({ where: { uuid } });
-
-    // FIXME: delete notes before !!!
 
     userRepository
       .remove(userToRemove)
