@@ -13,11 +13,6 @@ createConnection()
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }))
 
-    // home
-    routes.get("/home", (req, res) => {
-      res.send("home")
-    });
-
     // set routes
     app.use("/", routes)
 
