@@ -1,0 +1,28 @@
+import "reflect-metadata";
+import { createConnection, getRepository } from "typeorm";
+import routes from "./routes/index";
+
+import * as express from "express";
+
+createConnection()
+  .then(async connection => {
+
+    // create express app
+    const app = express();
+
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }))
+
+    // home
+    routes.get("/home", (req, res) => {
+      res.send("home")
+    });
+
+    // set routes
+    app.use("/", routes)
+
+    // start express server
+    app.listen(3000);
+
+  })
+  .catch(console.log);
