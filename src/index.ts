@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { createConnection, getRepository } from "typeorm";
+import { createConnection } from "typeorm";
 import routes from "./routes/index";
 
 import * as express from "express";
