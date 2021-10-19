@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, Generated, BeforeInsert, BeforeUpdate } from "typeorm";
-import { Length, IsEmail, IsDate, MinLength, MaxLength } from "class-validator";
+import { IsEmail, MinLength, MaxLength } from "class-validator";
 
 import { Note } from "./Note";
 import { hashSync } from "bcryptjs";

@@ -1,4 +1,4 @@
-import { getConnection, getRepository } from "typeorm";
+import { getConnection } from "typeorm";
 import { NextFunction, Request, Response } from "express";
 import { Note } from "../entity/Note";
 import { User } from "../entity/User";
@@ -9,7 +9,7 @@ export class NoteController {
     const noteRepository = getConnection().getRepository(Note);
 
     noteRepository
-      .find()
+      .find({ relations: ["user"]})
       .then((note) => response.json(note))
       .catch((err) => response.json(err));
   }

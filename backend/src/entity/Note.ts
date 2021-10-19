@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, Generated, BeforeInsert } from "typeorm";
-import { Length, IsDate, MinLength, MaxLength } from "class-validator";
+import { MinLength, MaxLength } from "class-validator";
 
 import { User } from "./User";
 

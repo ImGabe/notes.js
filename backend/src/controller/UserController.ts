@@ -1,4 +1,4 @@
-import { getConnection, getRepository } from "typeorm";
+import { getConnection } from "typeorm";
 import { NextFunction, Request, Response } from "express";
 import { validate } from "class-validator";
 import { User } from "../entity/User";
