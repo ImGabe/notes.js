@@ -1,14 +1,12 @@
 import { Router } from "express";
 import { AuthController } from "../controller/AuthController";
-import authMiddleware from "../middleware/authMiddleware";
+
 
 const router = Router();
 const authController = new AuthController();
 
-router.post("/", authController.authenticate);
-
-router.post("/login", [authMiddleware], (req, res) => {
-  res.send("Logado")
-});
+router.post("/login", authController.authenticate);
+router.get("/check", authController.check);
+router.get("/logout", authController.disauthentication);
 
 export default router;

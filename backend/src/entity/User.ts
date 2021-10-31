@@ -4,6 +4,7 @@ import { IsEmail, MinLength, MaxLength } from "class-validator";
 import { Note } from "./Note";
 import { hashSync } from "bcryptjs";
 
+
 @Entity()
 export class User {
 

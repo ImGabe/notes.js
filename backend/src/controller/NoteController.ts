@@ -1,5 +1,6 @@
 import { getConnection } from "typeorm";
 import { NextFunction, Request, Response } from "express";
+
 import { Note } from "../entity/Note";
 import { User } from "../entity/User";
 

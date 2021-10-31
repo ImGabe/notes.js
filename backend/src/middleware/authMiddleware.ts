@@ -1,11 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
-import * as jwt from "jsonwebtoken";
+import { promisify } from "util";
+import * as redis from "redis";
 
-interface TokenPayload {
-  id: string;
-  iat: number;
-  exp: number;
-}
+
+const client = redis.createClient();
+
+const setAsync = promisify(client.set).bind(client);
+const getAsync = promisify(client.get).bind(client);
+
 
 export default function authMiddleware(
   request: Request, response: Response, next: NextFunction
@@ -19,10 +21,9 @@ export default function authMiddleware(
   const token = authorization.replace('Bearer', '').trim();
 
   try {
-    const data = jwt.verify(token, process.env.JWT_SECRET);
-    const { id } = data as TokenPayload;
 
-    request.userID = id;
+
+    // request.userID = id;
 
     return next()
   } catch {

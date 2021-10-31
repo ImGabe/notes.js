@@ -1,8 +1,12 @@
 import "reflect-metadata";
+
+import * as cors from "cors"
+import * as express from "express";
+
 import { createConnection } from "typeorm";
+
 import routes from "./routes/index";
 
-import * as express from "express";
 
 require('dotenv').config()
 
@@ -12,6 +16,10 @@ createConnection()
     // create express app
     const app = express();
 
+    app.use(cors({
+      origin: ['http://localhost:3000/', 'http://localhost:3000/login', ],
+      credentials: true,
+    }))
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }))
 
@@ -19,7 +27,7 @@ createConnection()
     app.use("/", routes)
 
     // start express server
-    app.listen(3000);
+    app.listen(3030);
 
   })
   .catch(console.log);
